@@ -63,7 +63,8 @@ assertEqualArrays(
 // with _.compose and _.contains.
 
 
-
+//Compose performs right to left composition:
+//The contains method expects a second parameter, an array which is provided by the names function as an output after processing the articles.
 var t = _.compose(_.contains('Debbie Downer'), names) (articles);
 console.log(t);
 
@@ -86,6 +87,8 @@ assertEqual(
 // than compose! Let's build ourselves
 // another function that combines functions
 // to let us write code without glue variables.
+
+// Point-free programing: a function is composed out of other funcions, without any kinds of parameters.
 
 var fork = _.curry(function(lastly, f, g, x) {
   return lastly(f(x), g(x));
