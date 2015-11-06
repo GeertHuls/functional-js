@@ -128,13 +128,20 @@ assertDeepEqual(Maybe(4), ex4("4"))
 console.log("exercise 4...ok!")
 
 
+//Additional illustrations:
+var a4b = function (s) {
+  return s.replace('a', 'b');
+}
+var a4bs = map(a4b); //=> now this function will work on an array (or any other kind of functor)!
+//=> take a standard function and make it work with any functor.
+//=> lift standard function
 
-
-
-
-
-
-
+var _Maybe.prototype.map = function(f) {
+	return this.val ? Maybe(f(this.val)) : Maybe(null);
+};
+map(capitalize, Maybe("flamethrower"))
+//=> Maybe("FLAMETHROWER")
+// capitalize now runs IN maybe, we lifted it in there!
 
 
 
