@@ -126,6 +126,10 @@ console.log("--------Start exercise 4--------")
 //New:
 var ex4 = map(parseInt, Maybe);
 
+// OR compose also works here:
+
+// var ex4 = compose(map(parseInt), Maybe);
+
 
 assertDeepEqual(Maybe(4), ex4("4"))
 console.log("exercise 4...ok!")
