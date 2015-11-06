@@ -98,6 +98,9 @@ console.log("--------Start exercise 3--------")
 
 var ex3 = map(map(_.head), safeGet("name"));
 
+// OR compose also works:
+
+//var ex3 = compose(map(_.head), safeGet("name"));
 
 assertDeepEqual(Maybe('A'), ex3(user))
 console.log("exercise 3...ok!")
