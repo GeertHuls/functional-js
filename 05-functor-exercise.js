@@ -112,11 +112,16 @@ console.log("exercise 3...ok!")
 // Use Maybe to rewrite ex4 without an if statement
 console.log("--------Start exercise 4--------")
 
-var ex4 = function(n) {
-  if(n){
-    return parseInt(n);
-  }
-}
+
+//Original:
+// var ex4 = function(n) {
+//   if(n){
+//     return parseInt(n);
+//   }
+// }
+
+//New:
+var ex4 = map(parseInt, Maybe);
 
 
 assertDeepEqual(Maybe(4), ex4("4"))
