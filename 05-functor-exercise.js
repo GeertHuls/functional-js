@@ -72,7 +72,7 @@ var xs = Identity(['do', 'ray', 'me', 'fa', 'so', 'la', 'ti', 'do'])
 console.log("--------Start exercise 2--------")
 
 
-var ex2 = undefined
+var ex2 = map(_.head);
 
 
 assertDeepEqual(Identity('do'), ex2(xs))
@@ -90,7 +90,13 @@ var safeGet = _.curry(function(x,o){ return Maybe(o[x]) })
 var user = {id: 2, name: "Albert"}
 console.log("--------Start exercise 3--------")
 
-var ex3 = undefined;
+//console.log(safeGet("name", user)); // returns maybe
+
+//var m1 = Maybe("Albert");
+//var mf1 = map(_.head);
+//console.log(mf1(m1).val);
+
+var ex3 = map(map(_.head), safeGet("name"));
 
 
 assertDeepEqual(Maybe('A'), ex3(user))
