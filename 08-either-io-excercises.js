@@ -59,7 +59,7 @@ console.log("exercise 2...ok!")
 
 var save = function(x){ console.log("SAVED USER!"); return x; }
 
-var ex3 = undefined
+var ex3 = var ex3 = compose(map(save), ex2);
 
 console.log("--------Start exercise 2--------")
 assertDeepEqual(Right("fpguy99"), ex3("fpguy99"))
