@@ -79,7 +79,7 @@ console.log("--------Start exercise 4--------")
 var getValue = function(x){ return document.querySelector(x).value }.toIO()
 var stripSpaces = function(s){ return s.replace(/\s+/g, ''); }
 
-var ex4 = undefined
+var ex4 = var ex4 = compose(map(stripSpaces), getValue);
 
 
 assertEqual("honkeytonk", runIO(ex4('#text')))
