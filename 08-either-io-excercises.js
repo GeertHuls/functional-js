@@ -41,7 +41,7 @@ console.log("exercise 1...ok!")
 console.log("--------Start exercise 2--------")
 
 var ex2 = function(x) {
-//   return "TODO: write me";
+  return x.length > 3 ? Right(x) : Left("You need > 3");
 }
 
 
