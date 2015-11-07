@@ -94,7 +94,7 @@ console.log("exercise 4...ok!")
 // Use getHref() / getProtocal() and runIO() to get the protocal of the page.
 var getHref = function(){ return location.href; }.toIO();
 var getProtocal = compose(_.head, _.split('/'))
-var ex5 = undefined
+var ex5 = compose(map(getProtocal), getHref);
 
 console.log("--------Start exercise 5--------")
 assertEqual('http:', runIO(ex5(null)))
@@ -111,15 +111,33 @@ console.log("exercise 5...ok!")
 // setup...
 localStorage.user = JSON.stringify({email: "george@foreman.net"})
 
+var getCache = function(x){ return Maybe(localStorage[x]); }.toIO();
 
+//console.log(localStorage["user"]);
+//=> "{\"email\":\"george@foreman.net\"}"
+
+//var t1 = compose(_.get("email"), JSON.parse);
+//console.log(t1(localStorage["user"]));
 
 var getCache = function(x){ return Maybe(localStorage[x]); }.toIO();
-var ex6 = undefined
+
+//console.log(runIO(getCache('user')));
+
+var getStringEmail = compose(_.get('email'), JSON.parse);
+var ex6 = compose(map(map(getStringEmail)), getCache);
+
+//This must be double mapped because it's an IO of a Maybe, hence map twice!
+//This is a functor of a functor composition.
+//Example:
+var Type = compose(IO, Maybe);
+//You'll have to map-map to get to the inner value.
+//This is how behaviors are composed.
+
+//Solution to avoid nested maps: monad transformers, lenses, etc...
+//Or use flatmap but that only works if the functors are the same type.
 
 assertDeepEqual(Maybe("george@foreman.net"), runIO(ex6('user')))
 console.log("exercise 6...ok!")
-
-
 
 
 
