@@ -1,3 +1,5 @@
+
+//http://output.jsbin.com/bexuc
 console.clear();
 var _ = R;
 var P = PointFree;

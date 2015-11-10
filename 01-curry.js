@@ -1,4 +1,6 @@
 
+//https://github.com/DrBoolean/hardcorejs
+
 //http://jsbin.com/romun
 var _ = R;
 
