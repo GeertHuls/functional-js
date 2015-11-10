@@ -12,14 +12,14 @@ var runIO = P.IO.runIO;
 P.IO.extendFn();
 
 
-
+var log = function(x) { console.log(x); return x; }
 
 // Exercise 1
 // ==========
 // Use getPost(id) to return a Future of the title of the post ({id: i, title: 'Love them futures'})
 console.log("--------Start exercise 1--------")
 
-var ex1 = var ex1 = compose(map(_.get('title')), getPost);
+var ex1 = compose(map(_.get('title')), getPost);
 
 
 ex1(3).fork(log, function(title){
@@ -38,7 +38,7 @@ ex1(3).fork(log, function(title){
 console.log("--------Start exercise 2--------")
 
 var render = function(x){ return "<div>"+x+"</div>"; }
-var ex2 = undefined
+var ex2 = compose(map(render), ex1);
 
 
 ex2(3).fork(log, function(html){
@@ -60,7 +60,9 @@ console.log("--------Start exercise 3--------")
 var clicks = Bacon.fromEventTarget(document.querySelector("#box"), "click")
 
 //Todo: turn clicks into a stream of the e.target.innerHTML
-var htmlClicks = clicks;
+var htmlClicks = clicks.map(function(e){
+  return e.target.innerHTML;
+});
 
 htmlClicks.onValue(function(html){
   assertEqual('<span>CLICK ME</span>', trim(html))
