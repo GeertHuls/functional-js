@@ -1,4 +1,6 @@
 
+//<script src="https://cdnjs.cloudflare.com/ajax/libs/ramda/0.8.0/ramda.min.js"></script>
+
 //http://output.jsbin.com/yikoqi
 
 console.clear();
@@ -87,7 +89,11 @@ var search_input = document.querySelector("#search")
 var keydowns = Bacon.fromEventTarget(search_input, "keydown")
 
 //Todo: turn keydowns into a stream of the logged input's value
-var logs = keydowns;
+var logger = map(pureLog, function (x) {
+  return x.target.value;
+});
+var logs = keydowns.map(logger);
+
 
 logs.onValue(function(io){
   assertEqual(search_input.value, runIO(io))
@@ -114,7 +120,7 @@ assertDeepEqual(Maybe(Maybe(Maybe('Walnut St'))), ex5(user))
 console.log("exercise 5...ok!")
 
 
-
+//4:57
 
 
 
