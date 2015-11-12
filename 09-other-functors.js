@@ -48,6 +48,9 @@ You must fork it ot kick it off.
 It takes a function as it's value.
 
 Calls the function with it's result once it's there.
+
+You can easily extend future computions (with map or compose).
+Once it gets evaluated the core function will kick off togheter with the extensions.
 */
 
 //Examples

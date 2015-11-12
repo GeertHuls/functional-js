@@ -114,7 +114,12 @@ console.log("--------Start exercise 5--------")
 
 var safeGet = _.curry(function(x,o){ return Maybe(o[x]) })
 var user = {id: 2, name: "Albert", address: { street: {number: 22, name: 'Walnut St'} } }
-var ex5 = undefined;
+
+
+var t5 = compose(map(safeGet("street")),safeGet("address"));
+
+var ex5 = compose(map(map(safeGet('name'))), //map twice because it is nested maybe, example: console.log(t5(user).val.val.name);
+  map(safeGet("street")),safeGet("address"));
 
 assertDeepEqual(Maybe(Maybe(Maybe('Walnut St'))), ex5(user))
 console.log("exercise 5...ok!")
