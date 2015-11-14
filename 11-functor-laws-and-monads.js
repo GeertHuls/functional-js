@@ -249,3 +249,17 @@ var chain = function(f) {
 
 var mjoin = chain(id);
 //Chain says: open up the monad/contianer and id just returns the value. Basically this is mjoin.
+
+
+//Monad laws
+
+//left identity
+mcompose(M, f) == f;
+
+//right identity
+mcompose(f, M) == f;
+
+//associativity
+
+mcompose(mcompose(f, g), h) == mcompose(f, mcompose(g, h));
+

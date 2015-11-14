@@ -37,8 +37,6 @@ assertDeepEqual(Maybe('Walnut St'), ex1(user))
 console.log("exercise 1...ok!")
 
 
-
-
 // Exercise 2
 // ==========
 // Use monads to get the href, then purely log it.
@@ -48,17 +46,14 @@ console.log("--------Start exercise 2--------")
 var getHref = function(){ return location.href }.toIO();
 var pureLog = function(x){ console.log(x); return x; }.toIO();
 
-var ex2 = undefined
+var ex2 = compose(mjoin, map(pureLog), getHref);
 
-assertEqual("http://run.jsbin.io/runner", runIO(ex2(null)))
+//OR
+
+ex2 = compose(chain(pureLog), getHref);
+
+assertEqual("http://null.jsbin.com/runner", runIO(ex2(null)))
 console.log("exercise 2...ok!")
-
-
-
-
-
-
-
 
 
 // Exercise 3
@@ -66,22 +61,21 @@ console.log("exercise 2...ok!")
 // Use monads to first get the Post with getPost(), then pass it's id in to getComments().
 console.log("--------Start exercise 3--------")
 
-var ex3 = undefined
+var ex3 = compose(mjoin, map(getComments), getPost);
+
+// OR
+
+compose(chain(getComments), getPost);
+
+//OR
+
+//mcompose(getComments, getPost);
+//mcompose composes 2 monadic actions together.
 
 ex3(13).fork(log, function(res){
   assertEqual(2, res.length)
   console.log("exercise 3...ok!")
 })
-
-
-
-
-
-
-
-
-
-
 
 
 // TEST HELPERS
